@@ -1,13 +1,10 @@
 const Hapi = require('@hapi/hapi');
 const notes = require('./api/notes');
 const NotesService = require('./services/inMemory/NotesService');
-
-
-// const init = async () => {
-//   const server = Hapi.server();
+const NotesValidator = require('./validator/notes');
 
 const init = async () => {
-  const notesService = new NotesService();  
+  const notesService = new NotesService();
   const server = Hapi.server({
     port: 5000,
     host: process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0',
@@ -20,11 +17,12 @@ const init = async () => {
 
 
   ///REGISTRASI SATU PLUGIN///
-
+  
   await server.register({
     plugin:notes,
     options: {
-      service: notesService
+      service: notesService,
+      validator: NotesValidator,
     },
 
   });
@@ -34,4 +32,4 @@ const init = async () => {
 };
 
 
-  init();
+init();

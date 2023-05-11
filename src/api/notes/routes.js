@@ -1,5 +1,5 @@
-const { handler } = require("@hapi/hapi/lib/cors");
-const { getAllNotesHandler } = require("../../handler");
+// const { handler } = require("@hapi/hapi/lib/cors");
+// const { GetAllNotesHandler} = require("../../handler");
 
 const routes = (handler) => [
     {
